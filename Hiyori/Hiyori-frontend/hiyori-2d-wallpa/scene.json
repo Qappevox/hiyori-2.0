@@ -1,0 +1,264 @@
+{
+	"camera" : 
+	{
+		"center" : "0.00000 0.00000 -1.00000",
+		"eye" : "0.00000 0.00000 0.00000",
+		"up" : "0.00000 1.00000 0.00000"
+	},
+	"general" : 
+	{
+		"ambientcolor" : "0.30000 0.30000 0.30000",
+		"bloom" : false,
+		"bloomhdrfeather" : 0.1,
+		"bloomhdriterations" : 8,
+		"bloomhdrscatter" : 1.619,
+		"bloomhdrstrength" : 2.0,
+		"bloomhdrthreshold" : 1.0,
+		"bloomstrength" : 2.0,
+		"bloomthreshold" : 0.64999998,
+		"camerafade" : true,
+		"cameraparallax" : false,
+		"cameraparallaxamount" : 0.5,
+		"cameraparallaxdelay" : 0.1,
+		"cameraparallaxmouseinfluence" : 0.5,
+		"camerapreview" : true,
+		"camerashake" : false,
+		"camerashakeamplitude" : 0.5,
+		"camerashakeroughness" : 1.0,
+		"camerashakespeed" : 3.0,
+		"clearcolor" : "0.70000 0.70000 0.70000",
+		"clearenabled" : true,
+		"farz" : 10000.0,
+		"fov" : 50.0,
+		"hdr" : false,
+		"nearz" : 0.0099999998,
+		"orthogonalprojection" : 
+		{
+			"height" : 2160,
+			"width" : 3840
+		},
+		"skylightcolor" : "0.30000 0.30000 0.30000",
+		"zoom" : 1.0
+	},
+	"objects" : 
+	[
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 13,
+			"image" : "models/backgroundPG.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "backgroundPG",
+			"origin" : "1920.00000 1080.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "3840.00000 2160.00000",
+			"solid" : true,
+			"visible" : true
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 19,
+			"image" : "models/bar.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "bar",
+			"origin" : "1920.00000 1620.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "4.00000 4.00000",
+			"solid" : true,
+			"visible" : 
+			{
+				"script" : "'use strict';\n\nvar bars = [];\nvar baseOrigin;\nvar baseAngle;\nlet audioData = engine.registerAudioBuffers(64);\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function update() {\n    var origin = baseOrigin.copy();\n    var scale = new Vec3(2.5); /* edit this value for bar width, for horizontal 6 for vertical 3*/\n\n    for (var i = 0; i < 64; ++i) {\n        let amt = audioData.average[i];\n        let bar = bars[i];\n\n        scale.y = amt * 80;\n        origin.x += 30; /*edit this value for horizontal bar spacing, for horizontal bar 30 for vertical 0*/\n        origin.y += 0; /*edit this value for Vertical bar spacing, for Vertical bar 17 for horizontal 0 */\n        bar.scale = scale;\n        bar.origin = origin;\n\n    }\n}\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function init() {\n    bars.push(thisLayer);\n    let thisIndex = thisScene.getLayerIndex(thisLayer);\n    for (var i = 1; i < 64; ++i) {\n        let newBar = thisScene.createLayer('models/bar.json');\n        thisScene.sortLayer(newBar, thisIndex);\n        newBar.parallaxDepth = new Vec2(0, 0);\n        bars.push(newBar);\n    }\n\n    for (var i = 0; i < 64; ++i) {\n        let angle = 360 * (i / 64);\n        let bar = bars[i];\n        bar.angles = new Vec3(0, 0, 0); /* this controls bar rotation, the 3rd value is the rotation to change, for horizontal bar 0 for vertical 90*/\n\n\n    }\n    baseOrigin = thisLayer.origin;\n\n}\n//960, 540",
+				"value" : true
+			}
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 167,
+			"image" : "models/HiyoriFirstScene.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "HiyoriFirstScene",
+			"origin" : "2720.00000 840.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "600.00000 600.00000",
+			"solid" : true,
+			"visible" : 
+			{
+				"script" : "'use strict';\n/**\n * @param {Boolean} value - for property 'visible'\n * @return {Boolean} - update current property value\n */\n\nexport function update(value) {\n;\n\n  \treturn value;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+				"value" : true
+			}
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 171,
+			"image" : "models/blackbg.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "blackbg",
+			"origin" : "1920.00000 270.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "2.00000 0.50000 1.00000",
+			"size" : "1920.00000 1080.00000",
+			"solid" : true,
+			"visible" : true
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 174,
+			"image" : "models/HiyoriSecondScene.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "HiyoriSecondScene",
+			"origin" : "2720.00000 840.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "600.00000 600.00000",
+			"solid" : true,
+			"visible" : 
+			{
+				"script" : "'use strict';\n\nvar bars = [];\nvar baseOrigin;\n\nlet audioData = engine.registerAudioBuffers(64);\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function update() {\n    var origin = baseOrigin.copy();\n    var scale = new Vec3(2.5); \n\n    for (var i = 0; i < 64; ++i) {\n        let amt = audioData.average[i];\n        let bar = bars[i];\n        if (amt > 0 && amt < 0.055){\n        scale = 1;\n        bar.scale = scale;\n\n        }\n        else{\n            bar.scale = 0;\n        }\n    }\n}\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function init() {\n    bars.push(thisLayer);\n    let thisIndex = thisScene.getLayerIndex(thisLayer);\n    for (var i = 1; i < 64; ++i) {\n        let newBar = thisScene.createLayer('models/bar.json');\n        thisScene.sortLayer(newBar, thisIndex);\n        newBar.parallaxDepth = new Vec2(0, 0);\n        bars.push(newBar);\n    }\n\n    for (var i = 0; i < 64; ++i) {\n\n        let bar = bars[i];\n        bar.angles = new Vec3(0, 0, 0);\n\n    }\n    baseOrigin = thisLayer.origin;\n\n}\n\n\n\n",
+				"value" : true
+			}
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 178,
+			"image" : "models/HiyoriLastScene.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "HiyoriLastScene",
+			"origin" : "2720.00000 840.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "600.00000 600.00000",
+			"solid" : true,
+			"visible" : 
+			{
+				"script" : "'use strict';\n\nvar bars = [];\nvar baseOrigin;\n\nlet audioData = engine.registerAudioBuffers(64);\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function update() {\n    var origin = baseOrigin.copy();\n    var scale = new Vec3(2.5); \n\n    for (var i = 0; i < 64; ++i) {\n        let amt = audioData.average[i];\n        let bar = bars[i];\n        \n        if (amt > 0.055){\n        scale = 1;\n        bar.scale = scale;\n\n        }\n        else{\n            bar.scale = 0;\n        }\n    }\n}\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function init() {\n    bars.push(thisLayer);\n    let thisIndex = thisScene.getLayerIndex(thisLayer);\n    for (var i = 1; i < 64; ++i) {\n        let newBar = thisScene.createLayer('models/bar.json');\n        thisScene.sortLayer(newBar, thisIndex);\n        newBar.parallaxDepth = new Vec2(0, 0);\n        bars.push(newBar);\n    }\n\n    for (var i = 0; i < 64; ++i) {\n\n        let bar = bars[i];\n        bar.angles = new Vec3(0, 0, 0); \n\n\n    }\n    baseOrigin = thisLayer.origin;\n\n}",
+				"value" : true
+			}
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 440,
+			"image" : "models/HiyoriSceneF.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "HiyoriSceneF",
+			"origin" : "2720.00000 840.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "600.00000 600.00000",
+			"solid" : true,
+			"visible" : 
+			{
+				"script" : "'use strict';\nvar bars = [];\nvar baseOrigin;\nlet audioData = engine.registerAudioBuffers(64);\nlet timerFlag = true;\nlet sceneFlag = false;\n\nvar reference;\n\nfunction timeCalculator(delta){\n\tlet t = engine.timeOfDay * 100000;\n\tif (timerFlag == true){\n\t\ttimerFlag = false;\n\t\treference = t;\n        if (sceneFlag == true){\n            sceneFlag = false;\n        }\n        else if (sceneFlag != true){\n            sceneFlag = true;\t\n        }\n        \n\t}\n\tlet timer = t - reference;\n;\n\tif (timer > delta){\n\t\ttimerFlag = true;\n        \n\t}\n    \n}\n\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function update() {\n\ttimeCalculator(Math.floor(Math.random() * 1500) + 1);\n    var origin = baseOrigin.copy();\n    var scale = new Vec3(2.5); \n\n    for (var i = 0; i < 64; ++i) {\n        let amt = audioData.average[i];\n        let bar = bars[i];\n        \n        if (amt == 0 && !sceneFlag){\n        scale = 1;\n        bar.scale = scale;\n        }\n        else{\n            bar.scale = 0;\n        }\n    }\n}\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function init() {\n    bars.push(thisLayer);\n    let thisIndex = thisScene.getLayerIndex(thisLayer);\n    for (var i = 1; i < 64; ++i) {\n        let newBar = thisScene.createLayer('models/bar.json');\n        thisScene.sortLayer(newBar, thisIndex);\n        newBar.parallaxDepth = new Vec2(0, 0);\n        bars.push(newBar);\n    }\n\n    for (var i = 0; i < 64; ++i) {\n\n        let bar = bars[i];\n        bar.angles = new Vec3(0, 0, 0); \n\n\n    }\n    baseOrigin = thisLayer.origin;\n\n}",
+				"value" : true
+			}
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 573,
+			"image" : "models/HiyoriSceneFF.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "HiyoriSceneFF",
+			"origin" : "2720.00000 840.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "600.00000 600.00000",
+			"solid" : true,
+			"visible" : 
+			{
+				"script" : "'use strict';\nvar bars = [];\nvar baseOrigin;\nlet audioData = engine.registerAudioBuffers(64);\nlet timerFlag = true;\nlet sceneFlag = false;\n\nvar reference;\n\nfunction timeCalculator(delta){\n\tlet t = engine.timeOfDay * 100000;\n\tif (timerFlag == true){\n\t\ttimerFlag = false;\n\t\treference = t;\n        if (sceneFlag == true){\n            sceneFlag = false;\n        }\n        else if (sceneFlag != true){\n            sceneFlag = true;\t\n        }\n        \n\t}\n\tlet timer = t - reference;\n\n\tif (timer > delta){\n\t\ttimerFlag = true;\n        \n\t}\n    \n}\n\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function update() {\n\ttimeCalculator(Math.floor(Math.random() * 4500) + 1);\n    var origin = baseOrigin.copy();\n    var scale = new Vec3(2.5); \n\n    for (var i = 0; i < 64; ++i) {\n        let amt = audioData.average[i];\n        let bar = bars[i];\n        \n        if (amt == 0 && !sceneFlag){\n        scale = 1;\n        bar.scale = scale;\n        }\n        else{\n            bar.scale = 0;\n        }\n    }\n}\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function init() {\n    bars.push(thisLayer);\n    let thisIndex = thisScene.getLayerIndex(thisLayer);\n    for (var i = 1; i < 64; ++i) {\n        let newBar = thisScene.createLayer('models/bar.json');\n        thisScene.sortLayer(newBar, thisIndex);\n        newBar.parallaxDepth = new Vec2(0, 0);\n        bars.push(newBar);\n    }\n\n    for (var i = 0; i < 64; ++i) {\n\n        let bar = bars[i];\n        bar.angles = new Vec3(0, 0, 0); \n\n\n    }\n    baseOrigin = thisLayer.origin;\n\n}",
+				"value" : true
+			}
+		},
+		{
+			"alignment" : "center",
+			"alpha" : 1.0,
+			"angles" : "0.00000 0.00000 0.00000",
+			"brightness" : 1.0,
+			"color" : "1.00000 1.00000 1.00000",
+			"colorBlendMode" : 0,
+			"copybackground" : true,
+			"id" : 577,
+			"image" : "models/HiyoriSceneFFF.json",
+			"ledsource" : false,
+			"locktransforms" : false,
+			"name" : "HiyoriSceneFFF",
+			"origin" : "2720.00000 840.00000 0.00000",
+			"parallaxDepth" : "1.00000 1.00000",
+			"perspective" : false,
+			"scale" : "1.00000 1.00000 1.00000",
+			"size" : "600.00000 600.00000",
+			"solid" : true,
+			"visible" : 
+			{
+				"script" : "'use strict';\nvar bars = [];\nvar baseOrigin;\nlet audioData = engine.registerAudioBuffers(64);\nlet timerFlag = true;\nlet sceneFlag = false;\nvar reference;\n\nfunction timeCalculator(delta){\n\tlet t = engine.timeOfDay * 100000;\n\tif (timerFlag == true){\n\t\ttimerFlag = false;\n\t\treference = t;\n        if (sceneFlag == true){\n            sceneFlag = false;\n        }\n        else if (sceneFlag != true){\n            sceneFlag = true;\t\n        }\n        \n\t}\n\tlet timer = t - reference;\n\n \n\tif (timer > delta){\n\t\ttimerFlag = true;\n        \n\t}\n    \n}\n\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function update() {\n\ttimeCalculator(Math.floor(Math.random() * 7500) + 1);\n    var origin = baseOrigin.copy();\n    var scale = new Vec3(2.5); \n\n    for (var i = 0; i < 64; ++i) {\n        let amt = audioData.average[i];\n        let bar = bars[i];\n        \n        if (amt == 0 && !sceneFlag){\n        scale = 1;\n        bar.scale = scale;\n        }\n        else{\n            bar.scale = 0;\n        }\n    }\n}\n\n/**\n * @param {Boolean} value (for property 'visible')\n */\nexport function init() {\n    bars.push(thisLayer);\n    let thisIndex = thisScene.getLayerIndex(thisLayer);\n    for (var i = 1; i < 64; ++i) {\n        let newBar = thisScene.createLayer('models/bar.json');\n        thisScene.sortLayer(newBar, thisIndex);\n        newBar.parallaxDepth = new Vec2(0, 0);\n        bars.push(newBar);\n    }\n\n    for (var i = 0; i < 64; ++i) {\n\n        let bar = bars[i];\n        bar.angles = new Vec3(0, 0, 0); \n\n\n    }\n    baseOrigin = thisLayer.origin;\n\n}",
+				"value" : true
+			}
+		}
+	],
+	"version" : 1
+}
