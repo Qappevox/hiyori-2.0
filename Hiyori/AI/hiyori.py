@@ -113,7 +113,7 @@ class App(Screen):
         super(App, self).__init__()
     def main(self):
         global hiyori
-        hiyori.mainText()
+        hiyori.main()
     def change_text(self):
         global textFlag
         if processLabelFlag == True:
