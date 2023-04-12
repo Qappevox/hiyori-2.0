@@ -21,5 +21,6 @@ To use Hiyori, follow the steps below:
 <li>Download the Hiyori wallpaper from the project repository and apply it as your desktop wallpaper.</li>
 <li>Navigate to the AI folder and run the Hiyori AI bot using the Kivy framework.</li>
 <li>Interact with Hiyori by speaking to the bot using your computer's microphone.</li>
+
 # Credits
 This project was created by @Qappevox.
