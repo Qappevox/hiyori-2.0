@@ -23,4 +23,4 @@ To use Hiyori, follow the steps below:
 <li>Interact with Hiyori by speaking to the bot using your computer's microphone.</li>
 
 # Credits
-This project was created by @Qappevox.
+This project was created by @Qappevox :)
