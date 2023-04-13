@@ -5,7 +5,7 @@ This is a project that includes a voice AI bot named Hiyori. The project has two
 # Front-end
 <li>The front-end of the project is the user interface that users interact with. In this project, the front-end is created using Wallpaper Engine software. Wallpaper Engine is a software that allows users to use interactive and animated desktop wallpapers.</li>
 
-<li>In Hiyori's front-end, an animated wallpaper is included that has interactive elements. For example, users can click on specific parts of the wallpaper to trigger actions or display additional information. The front-end also includes audio effects that correspond with user interactions.</li>
+<li>In Hiyori's front-end, an animated wallpaper is included that has interactive elements. The front-end also includes audio effects that correspond with user interactions.</li>
 
 # AI Back-end
 <li>The AI back-end of the project is responsible for processing user input and responding accordingly. In this project, the back-end is created using the Kivy framework, a Python-based GUI framework.</li>
